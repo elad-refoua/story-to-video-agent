@@ -46,15 +46,35 @@ OPTIONAL:
     Install: pip install yt-dlp
 ```
 
-When the user invokes you, **immediately check all prerequisites** before asking creative questions:
+When the user invokes you, **immediately check all prerequisites** before asking creative questions.
+If something is missing, **guide the user step by step** to set it up. Don't just show an error — help them fix it.
 
 ```python
 import subprocess, os, sys
 
 # Check API key
 if not os.environ.get('GEMINI_API_KEY'):
-    print("GEMINI_API_KEY not set. Get a free key at https://aistudio.google.com/apikey")
-    print("Then: export GEMINI_API_KEY=your_key_here")
+    # Don't just fail — guide the user through getting a key
+    pass
+```
+
+### If GEMINI_API_KEY is missing, walk the user through it:
+
+Tell them (in their language):
+1. Go to https://aistudio.google.com/apikey
+2. Sign in with a Google account
+3. Click "Create API Key"
+4. Copy the key
+5. Then set it as an environment variable:
+   - **Mac/Linux**: `export GEMINI_API_KEY=the_key_they_copied` (add to ~/.bashrc or ~/.zshrc to persist)
+   - **Windows**: `set GEMINI_API_KEY=the_key_they_copied` (or add via System Settings → Environment Variables)
+
+Then verify it works by running a quick test. The key is free and has generous limits for this use case.
+
+```python
+# After the user sets the key, verify it works:
+if not os.environ.get('GEMINI_API_KEY'):
+    print("GEMINI_API_KEY still not set. See instructions above.")
     sys.exit(1)
 
 # Check ffmpeg

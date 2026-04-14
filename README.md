@@ -29,59 +29,49 @@ The agent doesn't just run — it collaborates with you:
 
 ## Installation
 
-### 1. Copy the agent
+### The easy way (let Claude do it)
+
+1. Install [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or Claude Desktop
+2. Tell Claude:
+
+```
+Download and install the story-to-video agent from https://github.com/elad-refoua/story-to-video-agent
+```
+
+Claude will clone the repo, copy the agent files, and install all dependencies. If you don't have a Gemini API key, the agent will walk you through getting a free one.
+
+### Manual installation
 
 ```bash
-# Clone this repo
 git clone https://github.com/elad-refoua/story-to-video-agent.git
-
-# Copy agent to your Claude Code agents directory
 cp -r story-to-video-agent/.claude/agents/story-to-video ~/.claude/agents/
+pip install Pillow python-bidi google-genai yt-dlp
+# Also install ffmpeg: brew install ffmpeg (Mac) / sudo apt install ffmpeg (Linux)
+# Windows: https://ffmpeg.org/download.html
 ```
 
-### 2. Set up your API key
-
-Get a free Gemini API key at [Google AI Studio](https://aistudio.google.com/apikey), then:
-
+Get a free Gemini API key at [Google AI Studio](https://aistudio.google.com/apikey) and set it:
 ```bash
-# Add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
 export GEMINI_API_KEY=your_key_here
-```
-
-### 3. Install dependencies
-
-```bash
-# Required
-pip install Pillow python-bidi google-genai
-
-# Optional (for YouTube URL mode)
-pip install yt-dlp
-
-# ffmpeg must be installed and in PATH
-# macOS: brew install ffmpeg
-# Ubuntu: sudo apt install ffmpeg
-# Windows: download from https://ffmpeg.org/download.html
 ```
 
 ## Usage
 
-Open Claude Code and say:
+Just talk to Claude naturally:
+
+```
+I have a testimony of my grandfather on Yad Vashem, help me turn it into a children's video
+```
 
 ```
 Create a video from this YouTube testimony: https://youtube.com/watch?v=...
 ```
 
-Or:
-
 ```
-I have a story I'd like to turn into an illustrated video for children ages 6-9
+I wrote a story and I want to illustrate and narrate it as a video for kids ages 6-9
 ```
 
-Or:
-
-```
-/story-to-video
-```
+The agent will ask you questions, show drafts for approval, and produce the final video.
 
 ## Examples
 

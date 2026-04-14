@@ -44,15 +44,26 @@ Claude will clone the repo, copy the agent files, and install all dependencies. 
 
 ```bash
 git clone https://github.com/elad-refoua/story-to-video-agent.git
+mkdir -p ~/.claude/agents
 cp -r story-to-video-agent/.claude/agents/story-to-video ~/.claude/agents/
 pip install Pillow python-bidi google-genai yt-dlp
-# Also install ffmpeg: brew install ffmpeg (Mac) / sudo apt install ffmpeg (Linux)
-# Windows: https://ffmpeg.org/download.html
 ```
+
+Install ffmpeg:
+- **Mac**: `brew install ffmpeg`
+- **Linux**: `sudo apt install ffmpeg`
+- **Windows**: Download from [gyan.dev/ffmpeg](https://www.gyan.dev/ffmpeg/builds/), extract, and add the `bin` folder to your PATH
 
 Get a free Gemini API key at [Google AI Studio](https://aistudio.google.com/apikey) and set it:
 ```bash
+# Mac/Linux — add to ~/.bashrc or ~/.zshrc to persist
 export GEMINI_API_KEY=your_key_here
+
+# Windows CMD
+set GEMINI_API_KEY=your_key_here
+
+# Windows PowerShell
+$env:GEMINI_API_KEY="your_key_here"
 ```
 
 ## Usage
